@@ -14,7 +14,7 @@ PRIMARY KEY(id)
 CREATE TABLE video(
 id INT AUTO_INCREMENT,
 nombre VARCHAR (100),
-ruta VARCHAR(100),
+ruta VARCHAR(500),
 usuario_fk INT,
 FOREIGN KEY (usuario_fk) REFERENCES usuario(id),
 PRIMARY KEY(id)

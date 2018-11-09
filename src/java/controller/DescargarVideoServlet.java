@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -47,12 +49,15 @@ public class DescargarVideoServlet extends HttpServlet {
                 e.printStackTrace();
             }
 
-            download_path=download_path.replace("\\", "\\\\");
+            File f = lastFileModified(download_path);
+            download_path = download_path.replace("\\", "\\\\"); //hay que duplicar el umero de backslash para que cambien
 
-           
             Video v = new Video();
-            v.setNombre("nombre");
-            v.setRuta(download_path);
+            
+            String nombreSinExtension = f.getName().replaceFirst("[.][^.]+$", "");
+            
+            v.setNombre(nombreSinExtension);
+            v.setRuta(download_path+"\\"+f.getName());
             v.setUsuario(u);
             DAO_Video dv = new DAO_Video();
             dv.create(v);
@@ -82,6 +87,26 @@ public class DescargarVideoServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
+    }
+
+    public static File lastFileModified(String dir) {
+        File fl = new File(dir);
+        File[] files = fl.listFiles(new FileFilter() {  
+            public boolean accept(File file) {
+                //return file.isFile();
+                return file.getName().toLowerCase().endsWith(".mp4");
+            }      
+
+        });
+        long lastMod = Long.MIN_VALUE;
+        File choice = null;
+        for (File file : files) {
+            if (file.lastModified() > lastMod) {
+                choice = file;
+                lastMod = file.lastModified();
+            }
+        }
+        return choice;
     }
 
 }
