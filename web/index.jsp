@@ -15,7 +15,7 @@
         <h1>Bienvenido al sistema de registro de videos de youtube flageados por la institucion</h1>
         <br>
 
-       
+
 
 
         <br>
@@ -27,18 +27,24 @@
             <br>
             <input type="submit" value="Iniciar">       
         </form>
-        
-                 <%
+
+        <%
             HttpSession ses = request.getSession();
-            
+
             if (ses.getAttribute("msg") != null) {
-                 String msg= (String) ses.getAttribute("msg");
-                 %> <h3><%= msg%></h3>  <%
-           }
-                 %>   
-        
-            
-        
+                String msg = (String) ses.getAttribute("msg");
+        %> <h3><%= msg%></h3>  <%
+            }
+            ses.removeAttribute("msg");
+
+            if (ses.getAttribute("usuarioIniciado") != null) {
+            response.sendRedirect("usuarioIniciado.jsp");
+            }
+
+        %>   
+
+
+
 
         <br>
         <br>
