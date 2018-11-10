@@ -19,7 +19,7 @@
             Usuario u = null;
             if (ses.getAttribute("usuarioIniciado") != null) {
                 u = (Usuario) ses.getAttribute("usuarioIniciado");
-             }%>
+            }%>
 
         <h1>Bienvenido <%= u.getNombre()%></h1>
         <br>
@@ -32,7 +32,18 @@
             <input type="submit" value="Descargar">
         </form>
 
+        <h3>Videos marcados</3>
+            <br>
 
 
-    </body>
+            <video width="320" height="240" controls>
+                <source src="videos/honor.mp4" type="video/mp4">
+            </video>
+
+
+
+
+
+
+</body>
 </html>

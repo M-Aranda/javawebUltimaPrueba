@@ -30,7 +30,7 @@ public class DescargarVideoServlet extends HttpServlet {
 
             Usuario u = (Usuario) request.getSession().getAttribute("usuarioIniciado");
 
-            String download_path = "C:\\Users\\Marce\\Desktop\\descargasDePrueba";
+            String download_path = "C:\\Users\\Marce\\Desktop\\ultimaPruebaJavaWeb\\web\\videos";
             String url = request.getParameter("url");
             String[] command
                     = {
