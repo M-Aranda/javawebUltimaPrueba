@@ -20,6 +20,7 @@ FOREIGN KEY (usuario_fk) REFERENCES usuario(id),
 PRIMARY KEY(id)
 );
 
+INSERT INTO usuario VALUES (NULL, '11-1', '123',0);
 
 -- ALTER TABLE video MODIFY nombre VARCHAR(100);
 -- SELECT * FROM usuario;

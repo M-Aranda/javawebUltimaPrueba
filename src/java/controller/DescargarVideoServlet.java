@@ -54,7 +54,6 @@ public class DescargarVideoServlet extends HttpServlet {
 
             File f = lastFileModified(download_path);
 
-            
             download_path = download_path.replace("\\", "\\\\"); //hay que duplicar el numero de backslash para que cambien
 
             Video v = new Video();
@@ -69,18 +68,15 @@ public class DescargarVideoServlet extends HttpServlet {
             DAO_Video dv = new DAO_Video();
 
             dv.create(v);
-            
+
             //cambio los archivos de directorio porque hay un problema para identificar el archivo mas reciente
             //f.renameTo(new File("C:\\Users\\Marce\\Desktop\\ultimaPruebaJavaWeb\\web\\videosAlmacenados\\"+f.getName()));
             //Usar path para conservar la extension del archivo 
-            Path temp = Files.move 
-        (Paths.get("C:\\Users\\Marce\\Desktop\\ultimaPruebaJavaWeb\\web\\videos\\"
-                    + "\\" + f.getName()),  
-        Paths.get(v.getRuta())); 
-            
-            
-            response.sendRedirect( "usuarioIniciado.jsp");
-            
+            Path temp = Files.move(Paths.get("C:\\Users\\Marce\\Desktop\\ultimaPruebaJavaWeb\\web\\videos\\"
+                    + "\\" + f.getName()),
+                    Paths.get(v.getRuta()));
+
+            response.sendRedirect("usuarioIniciado.jsp");
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DescargarVideoServlet.class
