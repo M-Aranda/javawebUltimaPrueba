@@ -14,10 +14,6 @@
     <body>
         <h1>Bienvenido al sistema de registro de videos de youtube flageados por la institucion</h1>
         <br>
-
-
-
-
         <br>
         <h3>Por favor, identifiquese</h3>
         <form action="iniciarSesion.do" method="POST" >
@@ -49,9 +45,12 @@
         <br>
         <br>
         <h3>O bien, cree una cuenta</h3>
+        <br>
         <form action="crearUsuario.do" method="POST" >
             <input type="text" name="nombre" id="nombre" placeholder="Nombre: " required>
+            <br>
             <input type="password" name="contrasenia" id="contrasenia" placeholder="Contrasenia: " required>
+            <br>
             <input type="submit" value="Crear">       
         </form>
     </body>

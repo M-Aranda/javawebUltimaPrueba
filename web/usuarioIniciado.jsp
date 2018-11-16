@@ -4,6 +4,9 @@
     Author     : Marce
 --%>
 
+<%@page import="model.Video"%>
+<%@page import="java.util.List"%>
+<%@page import="model.DAO.DAO_Video"%>
 <%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,18 +35,31 @@
             <input type="submit" value="Descargar">
         </form>
 
-        <h3>Videos marcados</3>
+        <h3>Videos descargados para revision</3>
             <br>
 
+            <%
+                DAO_Video dv = new DAO_Video();
+                List<Video> videosBajadosPorElusuario = dv.readVideosBajadosPorElUsuario(u.getId());
 
+                for (Video v : videosBajadosPorElusuario) {%>
+            <h4><%=v.getNombre()%></h4>
+            <br>  
             <video width="320" height="240" controls>
-                <source src="videos/honor.mp4" type="video/mp4">
+                <source src="videosAlmacenados/<%=v.getNombre()%>.mp4" type="video/mp4"><!--nombre.mp4-->
             </video>
+            <br>
+            <%}
+            %>
 
 
 
 
 
 
-</body>
+            <br>
+            <a href="cerrarSesion.do">Cerrar sesion</a>
+
+
+    </body>
 </html>
