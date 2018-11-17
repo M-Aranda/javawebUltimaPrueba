@@ -30,7 +30,7 @@ public class CrearUsuarioServlet extends HttpServlet {
             Usuario u = new Usuario();
             u.setNombre(request.getParameter("nombre"));
             u.setContrasenia(request.getParameter("contrasenia"));
-            u.setVideosSubidos(0);
+            u.setVideosDeYoutubeDescargados(0);
             du.create(u);
 
             response.sendRedirect("index.jsp");

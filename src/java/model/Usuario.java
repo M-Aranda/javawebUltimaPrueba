@@ -15,7 +15,7 @@ public class Usuario {
     private int id;
     private String nombre;
     private String contrasenia;
-    private int videosSubidos;
+    private int videosDeYoutubeDescargados;
 
     public Usuario() {
     }
@@ -24,7 +24,7 @@ public class Usuario {
         this.id = id;
         this.nombre = nombre;
         this.contrasenia = contrasenia;
-        this.videosSubidos = videosSubidos;
+        this.videosDeYoutubeDescargados = videosSubidos;
     }
 
     public int getId() {
@@ -51,17 +51,17 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    public int getVideosSubidos() {
-        return videosSubidos;
+    public int getVideosDeYoutubeDescargados() {
+        return videosDeYoutubeDescargados;
     }
 
-    public void setVideosSubidos(int videosSubidos) {
-        this.videosSubidos = videosSubidos;
+    public void setVideosDeYoutubeDescargados(int videosDeYoutubeDescargados) {
+        this.videosDeYoutubeDescargados = videosDeYoutubeDescargados;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", contrasenia=" + contrasenia + ", videosSubidos=" + videosSubidos + '}';
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", contrasenia=" + contrasenia + ", videosSubidos=" + videosDeYoutubeDescargados + '}';
     }
 
     

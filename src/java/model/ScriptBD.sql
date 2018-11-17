@@ -6,7 +6,7 @@ CREATE TABLE usuario(
 id INT AUTO_INCREMENT,
 nombre VARCHAR (30) UNIQUE,
 contrasenia VARCHAR (50),
-videosSubidos INT,
+videosDeYoutubeDescargados INT,
 PRIMARY KEY(id)
 );
 

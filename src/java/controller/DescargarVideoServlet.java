@@ -64,6 +64,7 @@ public class DescargarVideoServlet extends HttpServlet {
             // ruta de videos almacenados era otra, era download_path
             v.setRuta("C:\\Users\\Marce\\Desktop\\ultimaPruebaJavaWeb\\web\\videosAlmacenados\\"
                     + "\\" + f.getName());
+            u.setVideosDeYoutubeDescargados(u.getVideosDeYoutubeDescargados()+1);
             v.setUsuario(u);
             DAO_Video dv = new DAO_Video();
 

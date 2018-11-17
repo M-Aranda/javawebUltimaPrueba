@@ -37,7 +37,7 @@ public class DAO_Usuario extends Conexion implements DAO<Usuario>{
             u = new Usuario();
             u.setId(rs.getInt(1));
             u.setNombre(rs.getString(2));
-            u.setVideosSubidos(rs.getInt(3));
+            u.setVideosDeYoutubeDescargados(rs.getInt(3));
             
             lista.add(u);
         }
@@ -47,7 +47,7 @@ public class DAO_Usuario extends Conexion implements DAO<Usuario>{
 
     @Override
     public void update(Usuario ob) throws SQLException {
-        ejecutar("UPDATE usuario SET nombre='"+ob.getNombre()+"', '"+ob.getContrasenia()+"'  videosSubidos="+ob.getVideosSubidos()+" WHERE id="+ob.getId()+"");
+        ejecutar("UPDATE usuario SET nombre='"+ob.getNombre()+"', '"+ob.getContrasenia()+"'  videosDeYoutubeDescargados="+ob.getVideosDeYoutubeDescargados()+" WHERE id="+ob.getId()+"");
     }
 
     @Override
@@ -65,7 +65,7 @@ public class DAO_Usuario extends Conexion implements DAO<Usuario>{
             u.setId(rs.getInt(1));
             u.setNombre(rs.getString(2));
             u.setContrasenia(rs.getString(3));
-            u.setVideosSubidos(rs.getInt(4));
+            u.setVideosDeYoutubeDescargados(rs.getInt(4));
         }
         return u;
     }
@@ -80,7 +80,7 @@ public class DAO_Usuario extends Conexion implements DAO<Usuario>{
             u.setId(rs.getInt(1));
             u.setNombre(rs.getString(2));
             u.setContrasenia(rs.getString(3));
-            u.setVideosSubidos(rs.getInt(4));
+            u.setVideosDeYoutubeDescargados(rs.getInt(4));
         }
         return u;
     }
