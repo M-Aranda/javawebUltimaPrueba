@@ -34,18 +34,15 @@
             <br>
             <input type="submit" value="Descargar">
         </form>
-
         <h3>Videos descargados para revision</3>
             <br>
-
             <%
                 DAO_Video dv = new DAO_Video();
                 List<Video> videosBajadosPorElusuario = dv.readVideosBajadosPorElUsuario(u.getId());
 
                 for (Video v : videosBajadosPorElusuario) {%>
-            <h4><%=v.getNombre()%></h4>
-            <br>  
-            <video width="320" height="240" controls>
+            <h4 align="center"><%=v.getNombre()%></h4>
+            <video class="centrarVideo" width="320" height="240" controls>
                 <source src="videosAlmacenados/<%=v.getNombre()%>.mp4" type="video/mp4"><!--nombre.mp4-->
             </video>
             <br>
@@ -53,12 +50,8 @@
             %>
 
 
-
-
-
-
             <br>
-            <a href="cerrarSesion.do">Cerrar sesion</a>
+            <a href="cerrarSesion.do"><h3 align="right">Cerrar sesion</h3></a>
 
 
     </body>
