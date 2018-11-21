@@ -33,7 +33,7 @@ public class EliminarUsuarioServlet extends HttpServlet {
             DAO_Usuario du = new DAO_Usuario();
             DAO_Video dv = new DAO_Video();
 
-            Usuario u = (Usuario) du.getUsuarioById(Integer.parseInt(request.getParameter("idDelUsuarioABorrar")));
+            Usuario u = (Usuario) du.getUsuarioById(Integer.parseInt(request.getParameter("usuarioABorrar")));
             List<Video> videos=dv.readVideosBajadosPorElUsuario(u.getId());
             for (Video v : videos) {
                 Files.deleteIfExists(Paths.get(v.getRuta()));

@@ -71,12 +71,11 @@
                         </form> <!--No olvidar cerrar las forms! -->
                     </td>
                     <td>
-                        <form id="eliminacionDeUsuario" action="eliminarUsuario.do" method="POST">
-                            <input type="hidden" name="idDelUsuarioABorrar" id="idDelUsuarioABorrar" value="<%=usu.getId()%>"/>
-                            <input type="hidden" name="datos" value="<%=usu%>">
-                            <input type="submit" value="Eliminar usuario"/>
+                        <form id="eliminacionDeUsuario" action="atencion.jsp" method="POST">
+                            <input type="hidden" name="idDelUsuarioABorrar" value="<%=usu.getId()%>">
+                            <input type="hidden" name="datos" id="datos" value="<%=usu%>">
+                            <input type="submit" value="Eliminar usuario" onclick="confirmacion()">
                         </form> <!--No olvidar cerrar las forms! -->
-
                     </td>
                 </tr>   
                 <% }
@@ -86,23 +85,20 @@
         </table>
 
         <a href="cerrarSesion.do"><h3 align="center">Cerrar sesión</h3></a>
-
-
-
         <script src="js/JQuery.js"></script>
         <script>
-            function confirmacion() {
-                $('#eliminacionDeUsuario').submit(function () {
-                    var seleccion = $("#datos").val();
-                    var r = confirm("Seguro que quiere el eliminar a " + seleccion + "?");
-                    if (r) {
-                        return true;
-                    } else if (!r) {
-                        return false;
-                    }
-                    // return r; si se apreto cancelar es falso y no pasa nada, si es true se hace el submit
-                });
-            }
+                                function confirmacion() {
+                                    $('#eliminacionDeUsuario').submit(function () {
+                                        var seleccion = $("#datos").val();
+                                        var r = confirm("Seguro que quiere eliminar al usuario " + seleccion + "?");
+                                        if (r) {
+                                            return true;
+                                        } else if (!r) {
+                                            return false;
+                                        }
+                                        // return r; si se apreto cancelar es falso y no pasa nada, si es true se hace el submit
+                                    });
+                                }
         </script>
 
     </body>

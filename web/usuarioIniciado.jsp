@@ -25,7 +25,7 @@
                 u = (Usuario) ses.getAttribute("usuarioIniciado");
             }%>
 
-        <h1>Bienvenido <%= u.getNombre()%></h1>
+        <h1>Hola <%= u.getNombre()%></h1>
         <br>
         <h3>Por favor ingrese la url del video de Youtube a descargar</h3>   
         <form action="descargarVideo.do" method="POST">
@@ -50,45 +50,50 @@
         <br>
         -->
 
-        <h3>Videos  descargados:</3>
-            <br>
-            <h3>Cantidad de videos descargados: <%=u.getVideosDeYoutubeDescargados()%> </3>
-                <br>
-                <%
-                    DAO_Video dv = new DAO_Video();
-                    List<Video> videosBajadosPorElusuario = dv.readVideosBajadosPorElUsuario(u.getId());
-
-                    for (Video v : videosBajadosPorElusuario) {%>
-
-                <%
-                    //algoritmo para obtener el ombre sin lo que esta despues del ultimo -
-                    String nombreVideo = v.getNombre();
-                    List<String> partes = new ArrayList<>();
-                    for (String str : nombreVideo.split("-")) {
-                        partes.add(str);
-                    }
-                    int tamanioList = partes.size();
-                    partes.remove(tamanioList - 1);
-                    nombreVideo = "";
-                    for (String s : partes) {
-                        nombreVideo = partes + s;
-                    }
-
-
+        <%
+            if (u.getVideosDeYoutubeDescargados() == 0) {%>
+        <h3>Usted no tiene ningún video descargado.</3>
+            <%  } else if (u.getVideosDeYoutubeDescargados() > 0) {%>
+            <h3>Videos  descargados:</3>
+                <%  }
                 %>
+                <h3>Cantidad de videos descargados: <%=u.getVideosDeYoutubeDescargados()%> </3>
+                    <br>
+                    <%
+                        DAO_Video dv = new DAO_Video();
+                        List<Video> videosBajadosPorElusuario = dv.readVideosBajadosPorElUsuario(u.getId());
+
+                        for (Video v : videosBajadosPorElusuario) {%>
+
+                    <%
+                        //algoritmo para obtener el ombre sin lo que esta despues del ultimo -
+                        String nombreVideo = v.getNombre();
+                        List<String> partes = new ArrayList<>();
+                        for (String str : nombreVideo.split("-")) {
+                            partes.add(str);
+                        }
+                        int tamanioList = partes.size();
+                        partes.remove(tamanioList - 1);
+                        nombreVideo = "";
+                        for (String s : partes) {
+                            nombreVideo = partes + s;
+                        }
 
 
-                <h4 align="center"><%=nombreVideo%></h4>
-                <video class="centrarVideo" width="320" height="240" controls>
-                    <source src="videosAlmacenados/<%=v.getNombre()%>.mp4" type="video/mp4"><!--nombre.mp4-->
-                </video>
-                <br>
-                <%}
-                %>
+                    %>
 
 
-                <br>
-                <a href="cerrarSesion.do"><h3 align="center">Cerrar sesión</h3></a>
+                    <h4 align="center"><%=nombreVideo%></h4>
+                    <video class="centrarVideo" width="320" height="240" controls>
+                        <source src="videosAlmacenados/<%=v.getNombre()%>.mp4" type="video/mp4"><!--nombre.mp4-->
+                    </video>
+                    <br>
+                    <%}
+                    %>
 
-                </body>
-                </html>
+
+                    <br>
+                    <a href="cerrarSesion.do"><h3 align="center">Cerrar sesión</h3></a>
+
+                    </body>
+                    </html>

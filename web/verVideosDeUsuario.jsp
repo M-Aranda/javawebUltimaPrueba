@@ -27,15 +27,19 @@
 
 
 
+        <%
+                if (usu.getVideosDeYoutubeDescargados() == 0) {%>
+        <h1><%= usu.getNombre()%> aún no ha descargado ningún video</h1>
 
+        <% } else if (usu.getVideosDeYoutubeDescargados() > 0) {%>
         <h1>Estos son los videos que <%= usu.getNombre()%> ha descargado</h1>
+        <%} %>
+
         <br>
         <%
             DAO_Video dv = new DAO_Video();
             List<Video> videosBajadosPorElusuario = dv.readVideosBajadosPorElUsuario(usu.getId());
 
-    
-            
             for (Video v : videosBajadosPorElusuario) {%>
         <h4 align="center"><%=v.getNombre()%></h4>
         <video class="centrarVideo" width="320" height="240" controls>
@@ -70,7 +74,7 @@
                     function confirmacion() {
                         $('#elim').submit(function () {
                             var seleccion = $("#datos").val();
-                            var r = confirm("Seguro que quiere el video " + seleccion + "?");
+                            var r = confirm("Seguro que quiere eliminar el video " + seleccion + "?");
                             if (r) {
                                 return true;
                             } else if (!r) {
