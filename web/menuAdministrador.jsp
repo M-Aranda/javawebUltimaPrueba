@@ -24,6 +24,13 @@
         <%
             DAO_Usuario du = new DAO_Usuario();
             DAO_Video dv = new DAO_Video();
+            
+            //estas 4 lineas de codigo impiden que alguien mas se meta al emnu de administrador
+            Usuario admin=(Usuario) request.getSession().getAttribute("usuarioIniciado");
+            if(admin==null){
+                response.sendRedirect("error.jsp");
+            }
+
 
         %>
 
@@ -72,7 +79,7 @@
                     <td>
                         <form id="eliminacionDeUsuario" action="atencion.jsp" method="POST">
                             <input type="hidden" name="idDelUsuarioABorrar" value="<%=usu.getId()%>">
-                            <input type="hidden" name="datos" id="datos" value="<%=usu%>">
+                            <input type="hidden" name="datos" id="datos" value="<%=usu.getNombre()%>">
                             <input type="submit" value="Eliminar usuario" onclick="confirmacion()">
                         </form> <!--No olvidar cerrar las forms! -->
                     </td>
@@ -93,7 +100,7 @@
                                 function confirmacion() {
                                     $('#eliminacionDeUsuario').submit(function () {
                                         var seleccion = $("#datos").val();
-                                        var r = confirm("Seguro que quiere eliminar al usuario " + seleccion + "?");
+                                        var r = confirm("Va a comenzar el proceso de borrado del usuario llamado " + seleccion + "?");
                                         if (r) {
                                             return true;
                                         } else if (!r) {

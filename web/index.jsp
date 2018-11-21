@@ -26,6 +26,7 @@
             <br>
             <input type="submit" value="Iniciar">       
         </form>
+        <br>
 
         <%
             HttpSession ses = request.getSession();
@@ -42,11 +43,6 @@
 
         %>   
 
-
-
-
-        <br>
-        <br>
         <h3>O bien, cree una cuenta</h3>
         <br>
         <form action="crearUsuario.do" method="POST" >
@@ -56,10 +52,8 @@
             <br>
             <input type="submit" value="Crear">       
         </form>
-
-        <br>
         <script src="js/RandomColor.js"></script>
-       
+
 
     </body>
 </html>
