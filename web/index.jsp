@@ -12,7 +12,7 @@
 
     </head>
     <body>
-        <h1>Bienvenido al sistema de registro de videos de youtube flageados por la institucion</h1>
+        <h1>Bienvenido al sistema de almacenamiento de videos</h1>
         <br>
         <br>
         <h3>Por favor, identifiquese</h3>

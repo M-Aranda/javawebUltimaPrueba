@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,10 +17,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.DAO.DAO_Usuario;
 import model.DAO.DAO_Video;
 import model.Usuario;
 import model.Video;
 
+// Intentar descargar videos con una ', " o caracteres especiales causa que el mismo video siga bajandose
 /**
  *
  * @author Marce
@@ -31,9 +35,10 @@ public class DescargarVideoServlet extends HttpServlet {
         try {
             response.setCharacterEncoding("UTF-8");
 
+            DAO_Usuario du= new DAO_Usuario();
             Usuario u = (Usuario) request.getSession().getAttribute("usuarioIniciado");
 
-            String download_path = "C:\\Users\\Marce\\Desktop\\ultimaPruebaJavaWeb\\web\\videos";
+            String download_path = "C:\\Users\\Marce\\Desktop\\javawebUltimaPrueba\\web\\videos";
             String url = request.getParameter("url");
             String[] command
                     = {
@@ -60,20 +65,22 @@ public class DescargarVideoServlet extends HttpServlet {
 
             String nombreSinExtension = f.getName().replaceFirst("[.][^.]+$", "");
 
+
             v.setNombre(nombreSinExtension);
             // ruta de videos almacenados era otra, era download_path
-            v.setRuta("C:\\Users\\Marce\\Desktop\\ultimaPruebaJavaWeb\\web\\videosAlmacenados\\"
-                    + "\\" + f.getName());
-            u.setVideosDeYoutubeDescargados(u.getVideosDeYoutubeDescargados()+1);
+            v.setRuta("C:\\\\Users\\\\Marce\\\\Desktop\\\\javawebUltimaPrueba\\\\web\\\\videosAlmacenados\\\\"+ f.getName());
+            u.setVideosDeYoutubeDescargados(u.getVideosDeYoutubeDescargados() + 1);
             v.setUsuario(u);
             DAO_Video dv = new DAO_Video();
 
             dv.create(v);
+            du.update(u);
+            
 
             //cambio los archivos de directorio porque hay un problema para identificar el archivo mas reciente
             //f.renameTo(new File("C:\\Users\\Marce\\Desktop\\ultimaPruebaJavaWeb\\web\\videosAlmacenados\\"+f.getName()));
             //Usar path para conservar la extension del archivo 
-            Path temp = Files.move(Paths.get("C:\\Users\\Marce\\Desktop\\ultimaPruebaJavaWeb\\web\\videos\\"
+            Path temp = Files.move(Paths.get("C:\\Users\\Marce\\Desktop\\javawebUltimaPrueba\\web\\videos\\" // esta linea mueve el archivo
                     + "\\" + f.getName()),
                     Paths.get(v.getRuta()));
 

@@ -21,6 +21,14 @@ PRIMARY KEY(id)
 );
 
 INSERT INTO usuario VALUES (NULL, '11-1', '123',0);
+INSERT INTO usuario VALUES (NULL, 'Hola', 'jaja',0);
+INSERT INTO usuario VALUES (NULL, 'Dante', 'se',0);
+/*
+UPDATE usuario SET nombre='weee', contrasenia='qwewe', 
+ videosDeYoutubeDescargados=3 WHERE id=1
+ */
+
+-- SELECT usuario.id, usuario.nombre, usuario.contrasenia, usuario.videosDeYoutubeDescargados FROM usuario, video WHERE video.usuario_fk=usuario.id AND video.id=1;
 
 -- ALTER TABLE video MODIFY nombre VARCHAR(100);
 -- SELECT * FROM usuario;

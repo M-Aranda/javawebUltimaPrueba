@@ -4,6 +4,7 @@
     Author     : Marce
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="model.Video"%>
 <%@page import="java.util.List"%>
 <%@page import="model.DAO.DAO_Video"%>
@@ -26,8 +27,7 @@
 
         <h1>Bienvenido <%= u.getNombre()%></h1>
         <br>
-        <h3>Por favor ingrese la url del video de Youtube a revisar</h3>
-        <br>      
+        <h3>Por favor ingrese la url del video de Youtube a descargar</h3>   
         <form action="descargarVideo.do" method="POST">
             <input type="text" name="url" id="url" required>
             <br>
@@ -50,16 +50,35 @@
         <br>
         -->
 
-        <h3>Videos a revisar:</3>
+        <h3>Videos  descargados:</3>
             <br>
-            <h3>Descargados de Youtube: <%=u.getVideosDeYoutubeDescargados()%> </3>
+            <h3>Cantidad de videos descargados: <%=u.getVideosDeYoutubeDescargados()%> </3>
                 <br>
                 <%
                     DAO_Video dv = new DAO_Video();
                     List<Video> videosBajadosPorElusuario = dv.readVideosBajadosPorElUsuario(u.getId());
 
                     for (Video v : videosBajadosPorElusuario) {%>
-                <h4 align="center"><%=v.getNombre()%></h4>
+
+                <%
+                    //algoritmo para obtener el ombre sin lo que esta despues del ultimo -
+                    String nombreVideo = v.getNombre();
+                    List<String> partes = new ArrayList<>();
+                    for (String str : nombreVideo.split("-")) {
+                        partes.add(str);
+                    }
+                    int tamanioList = partes.size();
+                    partes.remove(tamanioList - 1);
+                    nombreVideo = "";
+                    for (String s : partes) {
+                        nombreVideo = partes + s;
+                    }
+
+
+                %>
+
+
+                <h4 align="center"><%=nombreVideo%></h4>
                 <video class="centrarVideo" width="320" height="240" controls>
                     <source src="videosAlmacenados/<%=v.getNombre()%>.mp4" type="video/mp4"><!--nombre.mp4-->
                 </video>
@@ -69,8 +88,7 @@
 
 
                 <br>
-                <a href="cerrarSesion.do"><h3 align="right">Cerrar sesion</h3></a>
-
+                <a href="cerrarSesion.do"><h3 align="center">Cerrar sesión</h3></a>
 
                 </body>
                 </html>

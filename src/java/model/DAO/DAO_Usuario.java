@@ -16,7 +16,7 @@ import model.Usuario;
  *
  * @author Marce
  */
-public class DAO_Usuario extends Conexion implements DAO<Usuario>{
+public class DAO_Usuario extends Conexion implements DAO<Usuario> {
 
     public DAO_Usuario() throws ClassNotFoundException, SQLException {
         super("prueba4JavaWebMAAT");
@@ -24,68 +24,100 @@ public class DAO_Usuario extends Conexion implements DAO<Usuario>{
 
     @Override
     public void create(Usuario ob) throws SQLException {
-        ejecutar("INSERT INTO usuario VALUES(NULL, '"+ob.getNombre()+"', '"+ob.getContrasenia()+"' ,0)");
+        ejecutar("INSERT INTO usuario VALUES(NULL, '" + ob.getNombre() + "', '" + ob.getContrasenia() + "' ,0)");
     }
 
     @Override
     public List<Usuario> read() throws SQLException {
-        List<Usuario> lista= new ArrayList<>();
-        
-        ResultSet rs= ejecutar("SELECT * FROM usuario");
-        Usuario u=null;
-        while(rs.next()){
+        List<Usuario> lista = new ArrayList<>();
+
+        ResultSet rs = ejecutar("SELECT * FROM usuario");
+        Usuario u = null;
+        while (rs.next()) {
             u = new Usuario();
             u.setId(rs.getInt(1));
             u.setNombre(rs.getString(2));
-            u.setVideosDeYoutubeDescargados(rs.getInt(3));
-            
+            u.setContrasenia(rs.getString(3));
+            u.setVideosDeYoutubeDescargados(rs.getInt(4));
+
             lista.add(u);
         }
 
+        close();
         return lista;
     }
 
     @Override
     public void update(Usuario ob) throws SQLException {
-        ejecutar("UPDATE usuario SET nombre='"+ob.getNombre()+"', '"+ob.getContrasenia()+"'  videosDeYoutubeDescargados="+ob.getVideosDeYoutubeDescargados()+" WHERE id="+ob.getId()+"");
+        ejecutar("UPDATE usuario SET nombre='" + ob.getNombre() + "', contrasenia='" + ob.getContrasenia() + "',  videosDeYoutubeDescargados=" + ob.getVideosDeYoutubeDescargados() + " WHERE id=" + ob.getId() + "");
     }
 
     @Override
     public void delete(String id) throws SQLException {
-        int idABorrar=Integer.parseInt(id);
-        ejecutar("DELETE FROM usuario WHERE id="+idABorrar+"");
+        int idABorrar = Integer.parseInt(id);
+        ejecutar("DELETE FROM usuario WHERE id=" + idABorrar + "");
     }
- 
-    public Usuario getUsuarioById(int id)throws SQLException{
-        ResultSet rs=ejecutar("SELECT * FROM usuario WHERE id="+id+" ");
-        
-        Usuario u=null;
-        if(rs.next()){
+
+    public Usuario getUsuarioById(int id) throws SQLException {
+        ResultSet rs = ejecutar("SELECT * FROM usuario WHERE id=" + id + " ");
+
+        Usuario u = null;
+        if (rs.next()) {
+            u = new Usuario();
+            u.setId(rs.getInt(1));
+            u.setNombre(rs.getString(2));
+            u.setContrasenia(rs.getString(3));
+            u.setVideosDeYoutubeDescargados(rs.getInt(4));
+        }
+        close();
+        return u;
+    }
+
+    public Usuario getUsuarioByNombre(String nombre) throws SQLException {
+        ResultSet rs = ejecutar("SELECT * FROM usuario WHERE nombre='" + nombre + "' ");
+
+        Usuario u = null;
+        if (rs.next()) {
+            u = new Usuario();
+            u.setId(rs.getInt(1));
+            u.setNombre(rs.getString(2));
+            u.setContrasenia(rs.getString(3));
+            u.setVideosDeYoutubeDescargados(rs.getInt(4));
+        }
+        close();
+        return u;
+    }
+
+    public int getCantUsuariosRegistrados() throws SQLException {
+        int cantidad = 0;
+
+        ResultSet rs = ejecutar("SELECT COUNT(*) FROM usuario");
+        if (rs.next()) {
+            cantidad = rs.getInt(1);
+        }
+        close();
+        return cantidad;
+
+    }
+
+    public Usuario getUsuarioByIdDeVideo(int idVideo) throws SQLException {
+        ResultSet rs = ejecutar("SELECT usuario.id, usuario.nombre, usuario.contrasenia,"
+                + " usuario.videosDeYoutubeDescargados FROM usuario, video"
+                + " WHERE video.usuario_fk=usuario.id AND video.id=" + idVideo + "; ");
+
+        Usuario u = null;
+        if (rs.next()) {
             u= new Usuario();
             u.setId(rs.getInt(1));
             u.setNombre(rs.getString(2));
             u.setContrasenia(rs.getString(3));
             u.setVideosDeYoutubeDescargados(rs.getInt(4));
         }
+        System.out.println(u);
+        close();
         return u;
-    }
-    
-    
-        public Usuario getUsuarioByNombre(String nombre)throws SQLException{
-        ResultSet rs=ejecutar("SELECT * FROM usuario WHERE nombre='"+nombre+"' ");
         
-        Usuario u=null;
-        if(rs.next()){
-            u= new Usuario();
-            u.setId(rs.getInt(1));
-            u.setNombre(rs.getString(2));
-            u.setContrasenia(rs.getString(3));
-            u.setVideosDeYoutubeDescargados(rs.getInt(4));
-        }
-        return u;
+        
     }
-    
-    
-    
-    
+
 }

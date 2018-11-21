@@ -12,29 +12,29 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Marce
  */
-@WebServlet(name="CerrarSesionServlet", urlPatterns={"/cerrarSesion.do"})
+@WebServlet(name = "CerrarSesionServlet", urlPatterns = {"/cerrarSesion.do"})
 public class CerrarSesionServlet extends HttpServlet {
-   
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
 
-        request.getSession().removeAttribute("usuarioIniciado");
-        
-        
-        response.sendRedirect("index.jsp");
+        if (request.getSession().getAttribute("usuarioIniciado") != null) {
+            request.getSession().removeAttribute("usuarioIniciado");
         }
-    
+
+        response.sendRedirect("index.jsp");
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 

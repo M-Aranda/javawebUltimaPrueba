@@ -31,7 +31,11 @@ public class IniciarSesionServlet extends HttpServlet {
             DAO_Usuario du= new DAO_Usuario();
             
             Usuario u=du.getUsuarioByNombre(nombre);
-            if(u.getContrasenia().equals(contrasenia)){
+            if(u.getContrasenia().equals(contrasenia) && (u.getNombre().equals("11-1"))){
+                request.getSession().setAttribute("usuarioIniciado", u);
+                response.sendRedirect("menuAdministrador.jsp");
+                
+            }    else if(u.getContrasenia().equals(contrasenia) ){
                 request.getSession().setAttribute("usuarioIniciado", u);
                 response.sendRedirect("usuarioIniciado.jsp");
                 

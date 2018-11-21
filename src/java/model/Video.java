@@ -60,7 +60,8 @@ public class Video {
 
     @Override
     public String toString() {
-        return "Video{" + "id=" + id + ", nombre=" + nombre + ", ruta=" + ruta + ", usuario=" + usuario + '}';
+        //return "Video{" + "id=" + id + ", nombre=" + nombre + ", ruta=" + ruta + ", usuario=" + usuario + '}';
+        return nombre;
     }
 
 

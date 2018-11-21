@@ -51,13 +51,14 @@ public class DAO_Video extends Conexion implements DAO<Video> {
             }
         }
 
+        close();
         return lista;
 
     }
 
     @Override
     public void update(Video ob) throws SQLException {
-        ejecutar("UPDATE video SET nombre='" + ob.getNombre() + "', '" + ob.getRuta() + "', " + ob.getUsuario().getId() + "   WHERE id=" + ob.getId() + "");
+        ejecutar("UPDATE video SET nombre='" + ob.getNombre() + "', ruta='" + ob.getRuta() + "', usuario_fk=" + ob.getUsuario().getId() + "   WHERE id=" + ob.getId() + "");
     }
 
     @Override
@@ -66,11 +67,9 @@ public class DAO_Video extends Conexion implements DAO<Video> {
         ejecutar("DELETE FROM video WHERE id=" + id + " ");
     }
 
-    
-    
     public List<Video> readVideosBajadosPorElUsuario(int id) throws SQLException {
         List<Video> lista = new ArrayList<>();
-        ResultSet rs = ejecutar("SELECT * FROM video WHERE usuario_fk="+id+" ");
+        ResultSet rs = ejecutar("SELECT * FROM video WHERE usuario_fk=" + id + " ");
 
         Video v = null;
         while (rs.next()) {
@@ -89,9 +88,47 @@ public class DAO_Video extends Conexion implements DAO<Video> {
             }
         }
 
+        close();
         return lista;
 
     }
-    
-    
+
+    public int getCantVideosDescargados() throws SQLException {
+        int cantidad = 0;
+
+        ResultSet rs = ejecutar("SELECT COUNT(*) FROM video");
+        if (rs.next()) {
+            cantidad = rs.getInt(1);
+        }
+
+        close();
+        return cantidad;
+
+    }
+
+    public Video findVideoById(int id) throws SQLException {
+
+        Video v = null;
+        try {
+
+            DAO_Usuario du = new DAO_Usuario();
+
+            ResultSet rs = ejecutar("SELECT * FROM video WHERE id=" + id + " ");
+
+            if (rs.next()) {
+                v = new Video();
+                v.setId(rs.getInt(1));
+                v.setNombre(rs.getString(2));
+                v.setRuta(rs.getString(3));
+                v.setUsuario(du.getUsuarioById(rs.getInt(4)));
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DAO_Video.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        close();
+        return v;
+    }
+
 }
