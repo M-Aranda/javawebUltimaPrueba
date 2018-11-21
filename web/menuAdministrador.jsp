@@ -17,6 +17,9 @@
         <link rel="stylesheet" href="style.css" type="text/css">
     </head>
     <body>
+        <div id="cambiarColor" align="right">
+            <input id="btnRandom" type="button" value="Quiero otro color de fondo (aleatorio)" onclick="setColor()">  
+        </div>
 
         <%
             DAO_Usuario du = new DAO_Usuario();
@@ -28,7 +31,7 @@
         <h3>Estos son los datos que hay disponibles</h3>
 
         <h2>Videos descargados: <%=dv.getCantVideosDescargados()%></h2>
-        <h2>Usuarios registrados: <%=du.getCantUsuariosRegistrados()-1%> </h2>
+        <h2>Usuarios registrados: <%=du.getCantUsuariosRegistrados() - 1%> </h2>
         <!--Para los propositos de este software, el administrador no cuenta como usuario, pero es uno -->
 
 
@@ -100,6 +103,10 @@
                                     });
                                 }
         </script>
+
+        <br>
+        <script src="js/RandomColor.js"></script>
+
 
     </body>
 </html>

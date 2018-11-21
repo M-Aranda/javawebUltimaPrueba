@@ -17,6 +17,10 @@
         <link rel="stylesheet" href="style.css" type="text/css">
     </head>
     <body>
+
+        <div id="cambiarColor" align="right">
+            <input id="btnRandom" type="button" value="Quiero otro color de fondo (aleatorio)" onclick="setColor()">  
+        </div>
         <%
             HttpSession ses = request.getSession();
             Usuario usu = null;
@@ -28,7 +32,7 @@
 
 
         <%
-                if (usu.getVideosDeYoutubeDescargados() == 0) {%>
+            if (usu.getVideosDeYoutubeDescargados() == 0) {%>
         <h1><%= usu.getNombre()%> aún no ha descargado ningún video.</h1>
 
         <% } else if (usu.getVideosDeYoutubeDescargados() > 0) {%>
@@ -85,6 +89,9 @@
                     }
         </script>
 
+
+        <br>
+        <script src="js/RandomColor.js"></script>
 
     </body>
 </html>

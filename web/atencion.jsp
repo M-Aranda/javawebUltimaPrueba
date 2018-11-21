@@ -13,6 +13,10 @@
         <link rel="stylesheet" href="style.css" type="text/css">
     </head>
     <body>
+        <div id="cambiarColor" align="right">
+            <input id="btnRandom" type="button" value="Quiero otro color de fondo (aleatorio)" onclick="setColor()">  
+        </div>
+
         <%
             int idUsuario = Integer.parseInt(request.getParameter("idDelUsuarioABorrar"));
         %>
@@ -29,6 +33,10 @@
             <input type="submit" value="No">
         </form>
         <br>
+        <br>
+        <script src="js/RandomColor.js"></script>
+        <br>
+
 
     </body>
 </html>

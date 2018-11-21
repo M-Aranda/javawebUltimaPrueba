@@ -18,6 +18,9 @@
         <link rel="stylesheet" href="style.css" type="text/css">
     </head>
     <body>
+        <div id="cambiarColor" align="right">
+            <input id="btnRandom" type="button" value="Quiero otro color de fondo (aleatorio)" onclick="setColor()">  
+        </div>
         <%
             HttpSession ses = request.getSession();
             Usuario u = null;
@@ -92,8 +95,13 @@
                     %>
 
 
+
+
                     <br>
                     <a href="cerrarSesion.do"><h3 align="center">Cerrar sesión</h3></a>
+
+                    <br>
+                    <script src="js/RandomColor.js"></script>
 
                     </body>
                     </html>

@@ -11,7 +11,10 @@
         <link rel="stylesheet" href="style.css" type="text/css">
 
     </head>
-    <body>
+    <body >
+        <div id="cambiarColor" align="right">
+            <input id="btnRandom" type="button" value="Quiero otro color de fondo (aleatorio)" onclick="setColor()">  
+        </div>
         <h1>Bienvenido al sistema de descarga de videos</h1>
         <br>
         <br>
@@ -34,7 +37,7 @@
             ses.removeAttribute("msg");
 
             if (ses.getAttribute("usuarioIniciado") != null) {
-            response.sendRedirect("usuarioIniciado.jsp");
+                response.sendRedirect("usuarioIniciado.jsp");
             }
 
         %>   
@@ -53,5 +56,10 @@
             <br>
             <input type="submit" value="Crear">       
         </form>
+
+        <br>
+        <script src="js/RandomColor.js"></script>
+       
+
     </body>
 </html>
