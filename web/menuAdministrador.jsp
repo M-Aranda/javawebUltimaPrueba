@@ -28,7 +28,8 @@
         <h3>Estos son los datos que hay disponibles</h3>
 
         <h2>Videos descargados: <%=dv.getCantVideosDescargados()%></h2>
-        <h2>Usuarios registrados: <%=du.getCantUsuariosRegistrados()%> </h2>
+        <h2>Usuarios registrados: <%=du.getCantUsuariosRegistrados()-1%> </h2>
+        <!--Para los propositos de este software, el administrador no cuenta como usuario, pero es uno -->
 
 
         <h3>Estos son los usuarios registrados:</h3>
@@ -52,14 +53,9 @@
 
                 <%for (Usuario usu : listaDeUsuarios) {%>
 
-                <%
-                    /*
-                    if (usu.getNombre().equals("11-1") && (usu.getContrasenia().equals("123"))) {
-                        listaDeUsuarios.remove(usu);
-                    }
-                     */
-                %>
-
+                <%if (usu.getNombre().equals("11-1") && (usu.getContrasenia().equals("123") && (usu.getId() == 1))) {
+                        //no se muestra
+                    } else {%>
                 <tr>
                     <td><%=usu.getId()%></td>
                     <td><%=usu.getNombre()%></td>
@@ -77,7 +73,11 @@
                             <input type="submit" value="Eliminar usuario" onclick="confirmacion()">
                         </form> <!--No olvidar cerrar las forms! -->
                     </td>
-                </tr>   
+                </tr>  
+                <% }
+                %>
+
+
                 <% }
                 %>
 

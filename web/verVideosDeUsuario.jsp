@@ -29,10 +29,10 @@
 
         <%
                 if (usu.getVideosDeYoutubeDescargados() == 0) {%>
-        <h1><%= usu.getNombre()%> aún no ha descargado ningún video</h1>
+        <h1><%= usu.getNombre()%> aún no ha descargado ningún video.</h1>
 
         <% } else if (usu.getVideosDeYoutubeDescargados() > 0) {%>
-        <h1>Estos son los videos que <%= usu.getNombre()%> ha descargado</h1>
+        <h1>Estos son los videos que <%= usu.getNombre()%> ha descargado: </h1>
         <%} %>
 
         <br>
