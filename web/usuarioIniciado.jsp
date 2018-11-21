@@ -29,7 +29,7 @@
         <br>
         <h3>Por favor ingrese la url del video de Youtube a descargar</h3>   
         <form action="descargarVideo.do" method="POST">
-            <input type="text" name="url" id="url" required>
+            <input type="text" name="url" id="url" size="50" required>
             <br>
             <input type="submit" value="Descargar">
         </form>

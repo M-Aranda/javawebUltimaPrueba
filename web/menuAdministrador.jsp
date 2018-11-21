@@ -44,12 +44,22 @@
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Cantidad de videos descargados</th>
-                    <th>Acción</th>
+                    <th>Ver videos</th>
+                    <th>Eliminar usuario</th>
                 </tr>
             </thead>
             <tbody>
 
                 <%for (Usuario usu : listaDeUsuarios) {%>
+
+                <%
+                    /*
+                    if (usu.getNombre().equals("11-1") && (usu.getContrasenia().equals("123"))) {
+                        listaDeUsuarios.remove(usu);
+                    }
+                     */
+                %>
+
                 <tr>
                     <td><%=usu.getId()%></td>
                     <td><%=usu.getNombre()%></td>
@@ -60,6 +70,14 @@
                             <input type="submit" value="Ver videos"/>
                         </form> <!--No olvidar cerrar las forms! -->
                     </td>
+                    <td>
+                        <form id="eliminacionDeUsuario" action="eliminarUsuario.do" method="POST">
+                            <input type="hidden" name="idDelUsuarioABorrar" id="idDelUsuarioABorrar" value="<%=usu.getId()%>"/>
+                            <input type="hidden" name="datos" value="<%=usu%>">
+                            <input type="submit" value="Eliminar usuario"/>
+                        </form> <!--No olvidar cerrar las forms! -->
+
+                    </td>
                 </tr>   
                 <% }
                 %>
@@ -67,8 +85,25 @@
             </tbody>
         </table>
 
-        <a href="cerrarSesion.do"><h3 align="center">Cerrar sesion</h3></a>
+        <a href="cerrarSesion.do"><h3 align="center">Cerrar sesión</h3></a>
 
+
+
+        <script src="js/JQuery.js"></script>
+        <script>
+            function confirmacion() {
+                $('#eliminacionDeUsuario').submit(function () {
+                    var seleccion = $("#datos").val();
+                    var r = confirm("Seguro que quiere el eliminar a " + seleccion + "?");
+                    if (r) {
+                        return true;
+                    } else if (!r) {
+                        return false;
+                    }
+                    // return r; si se apreto cancelar es falso y no pasa nada, si es true se hace el submit
+                });
+            }
+        </script>
 
     </body>
 </html>

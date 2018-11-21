@@ -21,8 +21,10 @@ PRIMARY KEY(id)
 );
 
 INSERT INTO usuario VALUES (NULL, '11-1', '123',0);
-INSERT INTO usuario VALUES (NULL, 'Hola', 'jaja',0);
-INSERT INTO usuario VALUES (NULL, 'Dante', 'se',0);
+INSERT INTO usuario VALUES (NULL, 'Vergil', '1',0);
+INSERT INTO usuario VALUES (NULL, 'Dante', '2',0);
+
+
 /*
 UPDATE usuario SET nombre='weee', contrasenia='qwewe', 
  videosDeYoutubeDescargados=3 WHERE id=1

@@ -130,5 +130,13 @@ public class DAO_Video extends Conexion implements DAO<Video> {
         close();
         return v;
     }
+    
+    
+    public void borrarVideosDeUsuario(int id) throws SQLException{
+        
+        ResultSet rs=ejecutar("DELETE FROM video WHERE usuario_fk="+id+" ");
+        
+        
+    }
 
 }
